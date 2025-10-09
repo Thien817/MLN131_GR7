@@ -1,68 +1,64 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Knowledge base cho GR7_MLN GPT - Offline chatbot
+// Knowledge base cho GR7_HCM GPT - Offline chatbot
 const KNOWLEDGE_BASE = {
-  // 1. Cơ sở thế giới quan & phương pháp luận
-  worldview: {
-    keywords: ['thế giới quan', 'phương pháp luận', 'duy vật', 'biện chứng', 'nhận thức', 'thực tiễn', 'mác', 'lênin', 'triết học'],
+  // 1. Tư tưởng Hồ Chí Minh về văn hóa
+  culture: {
+    keywords: ['văn hóa', 'nghệ thuật', 'văn nghệ', 'mặt trận', 'phục vụ nhân dân', 'hồ chí minh', 'văn hóa nghệ thuật'],
     responses: [
-      "**Cơ sở thế giới quan của chủ nghĩa Mác-Lênin:**\n\n**Chủ nghĩa duy vật biện chứng:**\n• Thế giới là vật chất, tồn tại khách quan độc lập với ý thức\n• Vận động và phát triển là quy luật tuyệt đối của tồn tại\n• Mâu thuẫn là động lực nội tại của sự phát triển\n• Quy luật phủ định của phủ định\n• Quy luật chuyển hóa từ lượng sang chất\n• Quy luật thống nhất và đấu tranh của các mặt đối lập\n\n**Chủ nghĩa duy vật lịch sử:**\n• Tồn tại xã hội quyết định ý thức xã hội\n• Phương thức sản xuất là cơ sở của xã hội\n• Đấu tranh giai cấp là động lực phát triển xã hội\n• Vai trò của quần chúng nhân dân trong lịch sử\n\n**Ý nghĩa:** Cung cấp phương pháp luận khoa học để nhận thức và cải tạo thế giới, là nền tảng lý luận cho hoạt động cách mạng.",
+      "**Tư tưởng Hồ Chí Minh về văn hóa:**\n\n**Bốn cách tiếp cận văn hóa:**\n• **Nghĩa rộng:** Tổng hợp mọi phương thức sinh hoạt của con người\n• **Nghĩa hẹp:** Đời sống tinh thần của xã hội, thuộc kiến trúc thượng tầng\n• **Nghĩa hẹp hơn:** Bàn đến các trường học, xóa nạn mù chữ, biết đọc biết viết\n• **Phương thức sử dụng:** Công cụ sinh hoạt\n\n**Quan niệm về văn hóa (1943):**\n\"Vì lẽ sinh tồn cũng như mục đích của cuộc sống, loài người mới sáng tạo và phát minh ra ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, những công cụ cho sinh hoạt hằng ngày về mặc, ăn, ở và các phương thức sử dụng. Toàn bộ những sáng tạo và phát minh đó tức là văn hóa.\"\n\n**Vai trò của văn hóa:**\n• Văn hóa là mục tiêu, động lực của sự nghiệp cách mạng\n• Văn hóa là một mặt trận\n• Văn hóa phục vụ quần chúng nhân dân",
       
-      "**Phương pháp luận của chủ nghĩa Mác-Lênin:**\n\n**Nguyên tắc cơ bản:**\n• **Thực tiễn:** Xuất phát từ thực tiễn, quay về phục vụ thực tiễn\n• **Toàn diện:** Xem xét sự vật, hiện tượng trong mối liên hệ tổng thể\n• **Cụ thể:** Phân tích điều kiện, hoàn cảnh cụ thể\n• **Lịch sử:** Xem xét trong quá trình vận động, phát triển\n• **Logic và lịch sử:** Thống nhất giữa tư duy logic và tiến trình lịch sử\n\n**Các phương pháp cụ thể:**\n• Phân tích và tổng hợp\n• Quy납 và diễn dịch\n• Trừu tượng hóa và cụ thể hóa\n• Từ hiện tượng đến bản chất\n• Từ đơn giản đến phức tạp\n\n**Ứng dụng trong thực tiễn:**\n• Phân tích tình hình chính trị-xã hội\n• Xây dựng đường lối, chính sách của Đảng\n• Giải quyết các vấn đề thực tiễn của cuộc sống\n• Nghiên cứu khoa học xã hội\n\n**Liên hệ Việt Nam:** Đảng Cộng sản Việt Nam vận dụng sáng tạo phương pháp luận Mác-Lênin trong lãnh đạo cách mạng và xây dựng đất nước."
+      "**Văn hóa nghệ thuật theo Hồ Chí Minh:**\n\n**Nguyên tắc cơ bản:**\n• **Văn hóa là mặt trận:** \"Văn hóa nghệ thuật cũng là một mặt trận. Anh chị em là chiến sĩ trên mặt trận ấy.\"\n• **Phục vụ nhân dân:** Nghệ thuật phải phục vụ Tổ quốc và nhân dân, không phục vụ danh lợi cá nhân\n• **Phản ánh chân thực:** Nghệ thuật phải phản ánh chân thực cuộc sống, hướng con người đến chân – thiện – mỹ\n\n**Trách nhiệm của nghệ sĩ:**\n• Gắn bó với nhân dân, hiểu nhân dân, nói tiếng nói của nhân dân\n• Khiêm tốn, học hỏi, rèn luyện đạo đức\n• Không 'tự phong', không coi thường quần chúng\n• Có lập trường vững vàng, phản ánh tâm tư nguyện vọng nhân dân\n\n**Ý nghĩa thời sự:**\nTrong thời đại hiện nay, nhiều 'idol mạng', 'nghệ sĩ tự phong' chạy theo danh lợi, coi thường quần chúng - điều này trái với tinh thần nghệ sĩ chân chính mà Hồ Chí Minh đề cao."
     ]
   },
 
-  // 2. Hình thái kinh tế-xã hội  
-  socioEconomic: {
-    keywords: ['hình thái', 'kinh tế xã hội', 'nguyên thủy', 'nô lệ', 'phong kiến', 'tư bản', 'xã hội chủ nghĩa'],
+  // 2. Tư tưởng Hồ Chí Minh về đạo đức
+  ethics: {
+    keywords: ['đạo đức', 'cách mạng', 'trung với nước', 'hiếu với dân', 'cần kiệm liêm chính', 'thương yêu con người', 'hồ chí minh'],
     responses: [
-      "**Học thuyết về hình thái kinh tế-xã hội:**\n\n**Định nghĩa:** Hình thái kinh tế-xã hội là giai đoạn phát triển của xã hội loài người, được quy định bởi phương thức sản xuất thống trị.\n\n**Năm hình thái:**\n• Cộng đồng nguyên thủy\n• Chế độ nô lệ\n• Chế độ phong kiến\n• Chế độ tư bản chủ nghĩa\n• Chế độ xã hội chủ nghĩa\n\n**Quy luật chuyển hóa:** Từ thấp đến cao, thông qua cách mạng xã hội khi lực lượng sản xuất không phù hợp với quan hệ sản xuất.",
+      "**Tư tưởng Hồ Chí Minh về đạo đức:**\n\n**Đạo đức là gốc của người cách mạng:**\n• Hồ Chí Minh coi đạo đức rất quan trọng như gốc của cây, như ngọn nguồn của sông, suối\n• Đạo đức là nền tảng tinh thần của xã hội, là sức mạnh và tiêu chuẩn hàng đầu của người cách mạng\n• Không có đạo đức thì dù tài giỏi mấy cũng không lãnh đạo được nhân dân\n\n**Bốn chuẩn mực đạo đức cách mạng:**\n• **Trung với nước, hiếu với dân:** Là phẩm chất đạo đức bao trùm quan trọng nhất\n• **Cần, kiệm, liêm, chính, chí công vô tư:** Nội dung cốt lõi của đạo đức cách mạng\n• **Thương yêu con người:** Kế thừa truyền thống nhân nghĩa, kết hợp với chủ nghĩa nhân đạo cộng sản\n• **Tinh thần quốc tế trong sáng:** Phẩm chất quan trọng của đạo đức cộng sản chủ nghĩa",
       
-      "**Đặc trưng của các hình thái kinh tế-xã hội:**\n\n**Chế độ tư bản chủ nghĩa:**\n• Tư liệu sản xuất thuộc về tư bản gia\n• Quan hệ bóc lột giá trị thặng dư\n• Mâu thuẫn giai cấp tư sản - vô sản\n\n**Chế độ xã hội chủ nghĩa:**\n• Công hữu về tư liệu sản xuất\n• Phân phối theo lao động\n• Mục tiêu phục vụ nhân dân\n\n**Liên hệ Việt Nam:** Đang trong thời kỳ quá độ lên CNXH với đặc trưng nền kinh tế thị trường định hướng xã hội chủ nghĩa."
+      "**Ý nghĩa thời sự của tư tưởng đạo đức Hồ Chí Minh:**\n\n**Giá trị lý luận:**\n• Hệ thống lý luận đạo đức cách mạng toàn diện, sâu sắc\n• Kết hợp truyền thống dân tộc với tinh hoa nhân loại\n• Định hướng cho việc xây dựng con người mới\n\n**Giá trị thực tiễn:**\n• Hướng dẫn hành động cho cán bộ, đảng viên\n• Xây dựng đạo đức xã hội trong thời đại mới\n• Chống tham nhũng, tiêu cực, bảo vệ đạo đức cách mạng\n\n**Liên hệ hiện tại:**\nTư tưởng đạo đức Hồ Chí Minh vẫn còn nguyên giá trị trong việc xây dựng con người mới xã hội chủ nghĩa, chống các biểu hiện tiêu cực trong xã hội."
     ]
   },
 
-  // 3. Kinh tế chính trị Mác-Lênin
-  politicalEconomy: {
-    keywords: ['kinh tế chính trị', 'giá trị thặng dư', 'hàng hóa', 'tiền tệ', 'tư bản', 'lao động'],
+  // 3. Tư tưởng Hồ Chí Minh về con người
+  human: {
+    keywords: ['con người', 'bản chất con người', 'mục tiêu cách mạng', 'xây dựng con người', 'hồ chí minh', 'con người mới'],
     responses: [
-      "**Học thuyết về hàng hóa và tiền tệ:**\n\n**Hàng hóa:**\n• Định nghĩa: Sản phẩm lao động để trao đổi\n• Hai thuộc tính: giá trị sử dụng và giá trị\n• Lao động hai mặt: cụ thể và trừu tượng\n\n**Tiền tệ:**\n• Hàng hóa đặc biệt làm thước đo giá trị chung\n• Chức năng: thước đo giá trị, phương tiện lưu thông, tích lũy, thanh toán\n\n**Ý nghĩa:** Cơ sở để hiểu bản chất của nền kinh tế hàng hóa và quan hệ trao đổi.",
+      "**Tư tưởng Hồ Chí Minh về con người:**\n\n**Theo \"Giáo trình học phần Tư tưởng Hồ Chí Minh\":**\n• Con người Việt Nam phát triển toàn diện là một thể thống nhất, kết hợp chặt chẽ các yếu tố: đức, trí, thể, mỹ\n• Tạo nên phẩm chất và năng lực (\"hồng\" và \"chuyên\", đức và tài)\n• \"Chẳng những thạo về chính trị, mà còn phải giỏi về chuyên môn\"\n• Con người có tính xã hội, là thành viên của cộng đồng xã hội\n\n**Các yếu tố hình thành con người toàn diện:**\n• **Đức dục:** Phẩm chất đạo đức trong sáng, cao đẹp\n• **Trí dục:** Sự phong phú về mặt trí tuệ (tri thức cũ và mới)\n• **Thể dục:** Sự mạnh khỏe về thể chất\n• **Mỹ dục:** Sự hiểu biết sâu sắc về cái hay, cái đẹp, cái cao cả\n\n**Quan điểm của Hồ Chí Minh:**\n\"Chữ người, nghĩa hẹp là gia đình, anh em, họ hàng, bè bạn; nghĩa rộng là đồng bào cả nước; rộng hơn nữa là cả loài người.\"\n\n**Nguồn:** [Tư tưởng Hồ Chí Minh về xây dựng con người Việt Nam phát triển toàn diện](https://lyluanchinhtri.vn/tu-tuong-ho-chi-minh-ve-xay-dung-con-nguoi-viet-nam-phat-trien-toan-dien-va-su-van-dung-cua-dang-ta-trong-thoi-ky-doi-moi-186.html)",
       
-      "**Học thuyết về giá trị thặng dư:**\n\n**Bản chất:** Phần giá trị mà công nhân tạo ra nhưng không được trả công.\n\n**Quá trình tạo ra:**\n• Tư bản gia mua sức lao động\n• Sức lao động tạo ra giá trị lớn hơn giá trị của nó\n• Chênh lệch này là giá trị thặng dư\n\n**Hai hình thức:**\n• Giá trị thặng dư tuyệt đối: kéo dài thời gian lao động\n• Giá trị thặng dư tương đối: tăng năng suất lao động\n\n**Ý nghĩa:** Bóc trần bản chất bóc lột của chế độ tư bản chủ nghĩa."
+      "**Vai trò của con người trong cách mạng:**\n\n**Con người là mục tiêu của cách mạng:**\n• Con người là chiến lược số một trong tư tưởng và hành động của Hồ Chí Minh\n• Mục tiêu được cụ thể hóa trong ba giai đoạn: giải phóng dân tộc – xây dựng chế độ dân chủ nhân dân – tiến dần lên xã hội chủ nghĩa\n• Giải phóng dân tộc, xã hội, giai cấp, con người\n\n**Ý nghĩa của việc xây dựng con người:**\n• Yêu cầu khách quan của sự nghiệp cách mạng, vừa cấp bách vừa lâu dài\n• Có ý nghĩa chiến lược, là trọng tâm của chiến lược phát triển đất nước\n• Có mối quan hệ chặt chẽ với xây dựng chính trị, kinh tế, văn hóa, xã hội\n\n**Liên hệ hiện tại:**\nTư tưởng này vẫn còn nguyên giá trị trong việc xây dựng con người mới xã hội chủ nghĩa, phát triển toàn diện con người Việt Nam."
     ]
   },
 
-  // 4. CNXH khoa học
-  scientificSocialism: {
-    keywords: ['cnxh', 'xã hội chủ nghĩa', 'cộng sản', 'giai cấp công nhân', 'cách mạng'],
+  // 4. Nghệ sĩ của nhân dân
+  artist: {
+    keywords: ['nghệ sĩ', 'nghệ thuật', 'nhân dân', 'văn nghệ sĩ', 'nghệ sĩ chân chính', 'idol mạng', 'nghệ sĩ tự phong'],
     responses: [
-      "**Chủ nghĩa xã hội khoa học:**\n\n**Khái niệm:** Học thuyết về sứ mệnh lịch sử của giai cấp công nhân, con đường và phương pháp xây dựng xã hội mới.\n\n**Nội dung cơ bản:**\n• Sứ mệnh lịch sử của giai cấp công nhân\n• Học thuyết về cách mạng xã hội chủ nghĩa\n• Học thuyết về thời kỳ quá độ\n• Học thuyết về xã hội cộng sản\n\n**Đặc trưng khoa học:** Dựa trên cơ sở khoa học của chủ nghĩa duy vật lịch sử và kinh tế chính trị Mác-Lênin.",
+      "**Nghệ sĩ của nhân dân theo Hồ Chí Minh:**\n\n**Nghệ thuật chân chính:**\n• Phục vụ Tổ quốc và nhân dân, không phục vụ danh lợi cá nhân\n• Phản ánh chân thực cuộc sống, hướng con người đến chân – thiện – mỹ\n• Văn hóa nghệ thuật là một mặt trận, nghệ sĩ là chiến sĩ trên mặt trận ấy\n\n**Đặc điểm của nghệ sĩ nhân dân:**\n• Gắn bó với nhân dân, hiểu nhân dân, nói tiếng nói của nhân dân\n• Khiêm tốn, học hỏi, rèn luyện đạo đức, tránh xa bệnh kiêu ngạo\n• Không 'tự phong', không coi thường quần chúng\n• Có lập trường vững vàng, phản ánh tâm tư nguyện vọng nhân dân",
       
-      "**Thời kỳ quá độ lên chủ nghĩa xã hội:**\n\n**Khái niệm:** Giai đoạn chuyển đổi từ chế độ tư bản chủ nghĩa lên chế độ xã hội chủ nghĩa.\n\n**Nhiệm vụ cơ bản:**\n• Xây dựng cơ sở vật chất kỹ thuật của CNXH\n• Cải tạo quan hệ sản xuất theo hướng xã hội chủ nghĩa\n• Xây dựng con người mới xã hội chủ nghĩa\n• Bảo vệ và củng cố chính quyền nhân dân\n\n**Liên hệ Việt Nam:** Việt Nam đang trong thời kỳ quá độ với mô hình kinh tế thị trường định hướng CNXH."
+      "**Thách thức thời đại hiện nay:**\n\n**Hiện tượng tiêu cực:**\n• Nhiều 'idol mạng', 'nghệ sĩ tự phong' chạy theo danh lợi\n• Chỉ chú trọng lợi ích cá nhân, coi thường khán giả\n• Tự xưng là 'nghệ sĩ' mà thiếu đạo đức\n• Chạy theo thị hiếu thấp kém, hình thức\n\n**Định hướng đúng đắn:**\n• Cần định hướng nghệ thuật chân chính\n• Phát huy vai trò giáo dục của nghệ thuật\n• Xây dựng đội ngũ nghệ sĩ có đạo đức, tài năng\n• Theo tinh thần: \"Nghệ thuật chỉ có ý nghĩa khi phục vụ Tổ quốc và nhân dân\"\n\n**Liên hệ thực tế:**\nTrong bối cảnh hiện nay, cần phát huy tư tưởng Hồ Chí Minh để xây dựng nền nghệ thuật chân chính, phục vụ nhân dân."
     ]
   },
 
-  // 5. Vấn đề dân tộc & tôn giáo
-  nationalReligious: {
-    keywords: ['dân tộc', 'tôn giáo', 'quyền dân tộc', 'chính sách dân tộc', '54 dân tộc', 'độc lập dân tộc', 'tự quyết', 'xu hướng', 'liên hiệp', 'lãnh thổ', 'việt nam'],
+  // 5. Tư tưởng Hồ Chí Minh tổng hợp
+  hcmGeneral: {
+    keywords: ['hồ chí minh', 'tư tưởng hồ chí minh', 'di sản', 'giá trị', 'ý nghĩa', 'thời sự', 'việt nam', 'giáo trình'],
     responses: [
-      "**Học thuyết Mác-Lênin về vấn đề dân tộc:**\n\n**Khái niệm dân tộc (theo nghĩa rộng):** Cộng đồng người ổn định làm thành nhân dân một nước, có lãnh thổ riêng, nền kinh tế thống nhất, có ngôn ngữ chung và có ý thức về sự thống nhất của mình.\n\n**Khái niệm dân tộc (theo nghĩa hẹp - Ethnic):** Cộng đồng tộc người được hình thành trong lịch sử, có mối liên hệ chặt chẽ và bền vững, có chung ý thức tự giác tộc người, ngôn ngữ và văn hóa.\n\n**5 đặc trưng cơ bản:**\n• **Lãnh thổ chung:** Vùng đất ổn định không gian sinh tồn\n• **Kinh tế chung:** Phương thức sản xuất, quan hệ kinh tế thống nhất  \n• **Ngôn ngữ chung:** Công cụ giao tiếp chủ yếu\n• **Văn hóa-tâm lý chung:** Truyền thống, phong tục, tập quán, y thức tự giác tộc người\n• **Ý thức tự giác tộc người:** Tiêu chí quan trọng nhất để phân định một tộc người",
+      "**Tư tưởng Hồ Chí Minh - Di sản vĩ đại:**\n\n**Theo \"Giáo trình học phần Tư tưởng Hồ Chí Minh\":**\n• Tư tưởng Hồ Chí Minh về văn hóa, đạo đức và con người là một hệ thống lý luận sâu sắc, toàn diện\n• Có ý nghĩa lý luận và thực tiễn to lớn\n• Định hướng cho việc xây dựng con người mới xã hội chủ nghĩa\n\n**Giá trị thời sự:**\n• Vẫn còn nguyên giá trị trong công cuộc xây dựng và phát triển đất nước\n• Có ý nghĩa sâu sắc trong việc định hướng nghệ thuật chân chính\n• Góp phần xây dựng đạo đức xã hội trong thời đại mới\n\n**Nguồn tài liệu chính thức:**\n• [Tư tưởng Hồ Chí Minh về văn hóa và xây dựng con người mới](https://hochiminh.vn/tu-tuong-dao-duc-ho-chi-minh/noi-dung-tu-tuong-dao-duc/tu-tuong-ho-chi-minh-ve-van-hoa-va-xay-dung-con-nguoi-moi-32)\n• [Tư tưởng Hồ Chí Minh về xây dựng con người Việt Nam phát triển toàn diện](https://lyluanchinhtri.vn/tu-tuong-ho-chi-minh-ve-xay-dung-con-nguoi-viet-nam-phat-trien-toan-dien-va-su-van-dung-cua-dang-ta-trong-thoi-ky-doi-moi-186.html)\n• [Tư tưởng Hồ Chí Minh về đạo đức cách mạng](https://www.quanlynhanuoc.vn/2020/07/09/tu-tuong-ho-chi-minh-ve-dao-duc-cach-mang/)\n• Hồ Chí Minh toàn tập - Nhà xuất bản Chính trị quốc gia\n\n**Liên hệ Việt Nam:**\nTư tưởng Hồ Chí Minh là nền tảng lý luận quan trọng cho sự nghiệp cách mạng Việt Nam, định hướng cho việc xây dựng con người mới và phát triển đất nước.",
       
-      "**Hai xu hướng khách quan của sự phát triển dân tộc (V.I. Lênin):**\n\n**1. Xu hướng thứ nhất - Cộng đồng dân cư muốn tách ra để hình thành cộng đồng dân tộc độc lập:**\n• Nguyên nhân: Do sự thúc tỉnh, sự trưởng thành về ý thức dân tộc\n• Biểu hiện: Các dân tộc đều có nghị vụ và quyền lợi riêng trên tất cả các lĩnh vực\n• Quyền tự quyết: Quyền của các dân tộc tự quyết định lấy vận mệnh của dân tộc mình\n\n**2. Xu hướng thứ hai - Các dân tộc trong từng quốc gia muốn liên hiệp lại với nhau:**\n• Biểu hiện: Sự phát triển của lực lượng sản xuất, khoa học và công nghệ\n• Mục đích: Làm xuất hiện nhu cầu xóa bỏ hàng rào ngăn cách giữa các dân tộc\n• Kết quả: Các dân tộc xích lại gần nhau\n\n**Mối quan hệ:** Hai xu hướng không đối lập mà bổ sung, cùng tồn tại trong tiến trình phát triển dân tộc.",
-      
-      "**Đặc điểm dân tộc Việt Nam:**\n\n**Đa dạng dân tộc:**\n• **54 dân tộc** với đặc điểm đa dạng về lịch sử hình thành\n• **Dân tộc Kinh (Việt):** Đa số 85,3% dân số (82.085.826 người)\n• **53 dân tộc thiểu số:** 14,7% dân số, trong đó 6 dân tộc có dân số trên 1 triệu người\n\n**Phân bố địa lý đặc trưng:**\n• **Vùng trung du và miền núi phía Bắc và Tây Nguyên:** Nơi sinh sống chủ yếu của dân tộc thiểu số\n• **Vùng biên giới:** Có vị trí chiến lược quan trọng\n• **Đặc điểm chung:** Có chung một vùng lãnh thổ ổn định, yếu tố phân biệt dân tộc chủ yếu ở địa bàn có vị trí chiến lược quan trọng\n\n**Đặc trưng văn hóa-xã hội:**\n• **Ngôn ngữ:** Đa dạng với nhiều hệ ngôn ngữ khác nhau\n• **Văn hóa:** Phong phú, đậm đà bản sắc dân tộc\n• **Tôn giáo-tín ngưỡng:** Đa dạng các hình thức tín ngưỡng truyền thống",
-      
-      "**Chính sách dân tộc của Đảng và Nhà nước Việt Nam:**\n\n**Nguyên tắc cơ bản:**\n• **Bình đẳng:** Các dân tộc được quyền tự quyết, liên hiệp công nhân tất cả các dân tộc\n• **Đoàn kết:** Từ chối những giá trị văn hóa dân tộc không phù hợp với văn hóa các dân tộc khác\n• **Tương trợ, cùng phát triển:** Hỗ trợ phát triển kinh tế-xã hội vùng dân tộc thiểu số\n\n**Chính sách cụ thể trong thời kỳ quá độ:**\n• **Độc lập tự chủ:** Xử lý đúng mối quan hệ giữa độc lập dân tộc và tự chủ về kinh tế\n• **Bảo vệ lãnh thổ:** Là yếu tố then chốt quyết định sự tồn tại và phát triển\n• **Phát triển toàn diện:** Kinh tế, chính trị, văn hóa, xã hội\n• **Liên hệ quốc tế:** Hội nhập với thế giới trên cơ sở bình đẳng\n\n**Thành tựu đạt được:**\n• Xây dựng khối đại đoàn kết toàn dân tộc Việt Nam\n• 54 cộng đồng tộc người đang được Đảng và Nhà nước quan tâm đặc biệt"
+      "**Ý nghĩa thực tiễn của tư tưởng Hồ Chí Minh:**\n\n**Trong lĩnh vực văn hóa:**\n• Định hướng xây dựng nền văn hóa tiên tiến, đậm đà bản sắc dân tộc\n• Phát huy vai trò của văn hóa trong cách mạng\n• Xây dựng đội ngũ nghệ sĩ chân chính\n\n**Trong lĩnh vực đạo đức:**\n• Hướng dẫn hành động cho cán bộ, đảng viên\n• Xây dựng đạo đức xã hội trong thời đại mới\n• Chống tham nhũng, tiêu cực, bảo vệ đạo đức cách mạng\n\n**Trong lĩnh vực con người:**\n• Định hướng xây dựng con người mới xã hội chủ nghĩa\n• Phát triển toàn diện con người Việt Nam\n• Kết hợp truyền thống dân tộc với tinh hoa nhân loại\n\n**Kết luận:**\nTư tưởng Hồ Chí Minh về văn hóa, đạo đức và con người là di sản quý báu, có ý nghĩa lý luận và thực tiễn sâu sắc, cần được nghiên cứu, học tập và vận dụng sáng tạo trong thực tiễn."
     ]
   },
 
-  // 6. Nhà nước & cách mạng
-  stateRevolution: {
-    keywords: ['nhà nước', 'cách mạng', 'chính quyền', 'dân chủ', 'chuyên chính'],
+  // 6. Câu hỏi thường gặp
+  faq: {
+    keywords: ['câu hỏi', 'hỏi', 'giải thích', 'là gì', 'như thế nào', 'tại sao', 'help', 'giúp'],
     responses: [
-      "**Học thuyết Mác-Lênin về nhà nước:**\n\n**Bản chất nhà nước:**\n• Công cụ chuyên chính của giai cấp thống trị\n• Sản phẩm của mâu thuẫn giai cấp không thể dung hòa\n• Máy móc bạo lực đặc biệt\n\n**Chức năng nhà nước:**\n• Đối nội: duy trì trật tự, quản lý xã hội\n• Đối ngoại: bảo vệ độc lập, chủ quyền\n\n**Nhà nước CNXH:** Chuyên chính vô sản, dân chủ rộng rãi cho nhân dân lao động.",
+      "**Các câu hỏi thường gặp về tư tưởng Hồ Chí Minh:**\n\n**1. Tư tưởng Hồ Chí Minh về văn hóa có gì đặc biệt?**\n• Bốn cách tiếp cận văn hóa độc đáo\n• Văn hóa là mặt trận, nghệ sĩ là chiến sĩ\n• Văn hóa phục vụ nhân dân, không phục vụ cá nhân\n\n**2. Đạo đức cách mạng theo Hồ Chí Minh là gì?**\n• Đạo đức là gốc của người cách mạng\n• Bốn chuẩn mực: Trung với nước, hiếu với dân; Cần, kiệm, liêm, chính; Thương yêu con người; Tinh thần quốc tế\n\n**3. Quan điểm của Hồ Chí Minh về con người?**\n• Con người là mục tiêu của cách mạng\n• Con người là chỉnh thể thống nhất\n• Cần xây dựng con người mới xã hội chủ nghĩa",
       
-      "**Học thuyết về cách mạng xã hội:**\n\n**Khái niệm:** Sự thay đổi căn bản về chất của xã hội, chuyển từ hình thái này sang hình thái khác.\n\n**Điều kiện cách mạng:**\n• Khách quan: khủng hoảng xã hội sâu sắc\n• Chủ quan: ý thức và tổ chức của giai cấp cách mạng\n\n**Hai loại cách mạng:**\n• Cách mạng dân chủ tư sản\n• Cách mạng xã hội chủ nghĩa\n\n**Liên hệ Việt Nam:** Cách mạng Tháng Tám 1945 và con đường đi lên CNXH."
+      "**4. Nghệ sĩ chân chính theo Hồ Chí Minh là gì?**\n• Phục vụ Tổ quốc và nhân dân\n• Gắn bó với nhân dân, khiêm tốn\n• Có đạo đức, trách nhiệm xã hội\n• Không 'tự phong', không coi thường quần chúng\n\n**5. Ý nghĩa thời sự của tư tưởng Hồ Chí Minh?**\n• Vẫn còn nguyên giá trị trong thời đại hiện nay\n• Định hướng xây dựng con người mới\n• Chống các biểu hiện tiêu cực trong xã hội\n• Phát huy vai trò của văn hóa nghệ thuật\n\n**6. Làm thế nào để vận dụng tư tưởng Hồ Chí Minh?**\n• Học tập, nghiên cứu sâu sắc\n• Vận dụng sáng tạo trong thực tiễn\n• Kết hợp truyền thống với hiện đại\n• Phục vụ nhân dân, phát triển đất nước"
     ]
   },
 
@@ -78,15 +74,15 @@ const KNOWLEDGE_BASE = {
 
   // Từ chối lịch sự
   outOfScope: [
-    "Xin lỗi, câu hỏi này ngoài phạm vi giáo trình Mác–Lênin. Bạn có thể hỏi về:",
-    "• Cơ sở thế giới quan & phương pháp luận",
-    "• Hình thái kinh tế–xã hội", 
-    "• Kinh tế chính trị Mác–Lênin",
-    "• CNXH khoa học",
-    "• Vấn đề dân tộc & tôn giáo",
-    "• Nhà nước & cách mạng",
-    "• Liên hệ đường lối Đảng và thực tiễn Việt Nam",
-    "• Các khái niệm và thuật ngữ chuyên môn"
+    "Xin lỗi, câu hỏi này ngoài phạm vi \"Giáo trình học phần Tư tưởng Hồ Chí Minh\". Bạn có thể hỏi về:",
+    "• Tư tưởng Hồ Chí Minh về văn hóa",
+    "• Tư tưởng Hồ Chí Minh về đạo đức", 
+    "• Tư tưởng Hồ Chí Minh về con người",
+    "• Nghệ sĩ của nhân dân",
+    "• Vai trò của văn hóa trong cách mạng",
+    "• Đạo đức cách mạng và chuẩn mực đạo đức",
+    "• Xây dựng con người mới xã hội chủ nghĩa",
+    "• Liên hệ thực tiễn Việt Nam hiện nay"
   ]
 };
 
@@ -96,7 +92,7 @@ function findBestResponse(message: string): string {
   
   // Nếu câu hỏi quá ngắn hoặc chỉ là chào hỏi
   if (lowerMessage.length < 3 || ['hi', 'hello', 'chào', 'xin chào'].includes(lowerMessage)) {
-    return "Chào bạn! Tôi là trợ giảng ảo chuyên về Chủ nghĩa Mác–Lênin, dựa trên giáo trình \"Những nguyên lý cơ bản của CN Mác–Lênin\".\n\n**Phạm vi hỗ trợ:**\n• Cơ sở thế giới quan & phương pháp luận\n• Hình thái kinh tế–xã hội\n• Kinh tế chính trị Mác–Lênin\n• CNXH khoa học\n• Vấn đề dân tộc & tôn giáo\n• Nhà nước & cách mạng\n• Liên hệ đường lối Đảng và thực tiễn Việt Nam\n\n**Cam kết:** Trả lời chính xác, súc tích, khoa học. Cấu trúc rõ ràng với bullet points và logic: định nghĩa → luận điểm → kết luận.\n\nHãy đặt câu hỏi về các chủ đề trong phạm vi giáo trình.";
+    return "Chào bạn! Tôi là trợ giảng ảo chuyên về Tư tưởng Hồ Chí Minh, dựa trên \"Giáo trình học phần Tư tưởng Hồ Chí Minh\".\n\n**Phạm vi hỗ trợ:**\n• Tư tưởng Hồ Chí Minh về văn hóa\n• Tư tưởng Hồ Chí Minh về đạo đức\n• Tư tưởng Hồ Chí Minh về con người\n• Nghệ sĩ của nhân dân\n• Vai trò của văn hóa trong cách mạng\n• Đạo đức cách mạng và chuẩn mực đạo đức\n• Xây dựng con người mới xã hội chủ nghĩa\n• Liên hệ thực tiễn Việt Nam hiện nay\n\n**Cam kết:** Trả lời chính xác, súc tích, khoa học. Cấu trúc rõ ràng với bullet points và logic: định nghĩa → luận điểm → kết luận.\n\nHãy đặt câu hỏi về các chủ đề trong phạm vi giáo trình.";
   }
 
   // Kiểm tra từng category và tính điểm match
@@ -116,11 +112,19 @@ function findBestResponse(message: string): string {
     });
 
     // Bonus cho các từ khóa đặc biệt
-    if (categoryKey === 'worldview' && (lowerMessage.includes('mác') || lowerMessage.includes('lênin') || lowerMessage.includes('triết học'))) {
+    if (categoryKey === 'culture' && (lowerMessage.includes('hồ chí minh') || lowerMessage.includes('văn hóa') || lowerMessage.includes('nghệ thuật'))) {
       score += 5;
     }
     
-    if (categoryKey === 'nationalReligious' && (lowerMessage.includes('việt nam') || lowerMessage.includes('54'))) {
+    if (categoryKey === 'ethics' && (lowerMessage.includes('đạo đức') || lowerMessage.includes('cách mạng') || lowerMessage.includes('hồ chí minh'))) {
+      score += 5;
+    }
+    
+    if (categoryKey === 'human' && (lowerMessage.includes('con người') || lowerMessage.includes('hồ chí minh') || lowerMessage.includes('xây dựng'))) {
+      score += 5;
+    }
+    
+    if (categoryKey === 'artist' && (lowerMessage.includes('nghệ sĩ') || lowerMessage.includes('nhân dân') || lowerMessage.includes('nghệ thuật'))) {
       score += 5;
     }
 
@@ -133,23 +137,19 @@ function findBestResponse(message: string): string {
       let responseIndex = 0;
       if (data.responses.length > 1) {
         // Logic chọn response cụ thể hơn
-        if (categoryKey === 'worldview' && lowerMessage.includes('phương pháp')) {
+        if (categoryKey === 'culture' && lowerMessage.includes('nghệ thuật')) {
           responseIndex = 1;
-        } else if (categoryKey === 'socioEconomic' && (lowerMessage.includes('đặc trưng') || lowerMessage.includes('tư bản'))) {
+        } else if (categoryKey === 'ethics' && (lowerMessage.includes('chuẩn mực') || lowerMessage.includes('đạo đức'))) {
           responseIndex = 1;
-        } else if (categoryKey === 'politicalEconomy' && lowerMessage.includes('giá trị')) {
+        } else if (categoryKey === 'human' && (lowerMessage.includes('mục tiêu') || lowerMessage.includes('cách mạng'))) {
           responseIndex = 1;
-        } else if (categoryKey === 'scientificSocialism' && lowerMessage.includes('quá độ')) {
+        } else if (categoryKey === 'artist' && (lowerMessage.includes('chân chính') || lowerMessage.includes('nhân dân'))) {
           responseIndex = 1;
-        } else if (categoryKey === 'nationalReligious') {
-          if (lowerMessage.includes('chính sách') || lowerMessage.includes('việt nam')) {
-            responseIndex = 3; // Chính sách VN
-          } else if (lowerMessage.includes('đặc điểm') || lowerMessage.includes('54')) {
-            responseIndex = 2; // Đặc điểm VN
-          } else if (lowerMessage.includes('xu hướng') || lowerMessage.includes('lênin')) {
-            responseIndex = 1; // Hai xu hướng
+        } else if (categoryKey === 'hcmGeneral') {
+          if (lowerMessage.includes('thời sự') || lowerMessage.includes('hiện nay')) {
+            responseIndex = 1; // Ý nghĩa thời sự
           }
-        } else if (categoryKey === 'stateRevolution' && lowerMessage.includes('cách mạng')) {
+        } else if (categoryKey === 'faq' && lowerMessage.includes('câu hỏi')) {
           responseIndex = 1;
         } else if (categoryKey === 'terminology') {
           if (lowerMessage.includes('kinh tế') || lowerMessage.includes('sản xuất') || lowerMessage.includes('phương thức')) {
